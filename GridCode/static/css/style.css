@@ -113,3 +113,18 @@ form {
     align-items: center;
 
 }
+
+
+
+#printPhotoButton {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display:none;
+}
+
+
+#contain {
+    margin-top: 50px;
+    margin-bottom: 150px
+}

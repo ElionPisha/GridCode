@@ -11,17 +11,13 @@
 </head>
 <body>
 
-<h1>Grid Code Upload HDF5 File</h1>
+<h1>Upload HDF5 File</h1>
 
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.file_upload }}
     <button type="submit" class="btn btn-primary">Process Data</button>
   </form>
-
-
-<!--  <p><a href="{% url 'index' %}">Return to home</a></p>-->
-
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

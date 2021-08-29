@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
-<div>
-  <canvas id="myChart"></canvas>
-</div>
-<div class="custom-cnt" style="width:100%;position:relative">
-    <button id="printPhotoButton" class="btn btn-primary" style="position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display:none">Download</button>
+
+<div class="container" id="contain">
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>
+    <div class="custom-cnt" style="width:100%;position:relative">
+        <button id="printPhotoButton" class="btn btn-primary">Download</button>
+    </div>
 </div>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>

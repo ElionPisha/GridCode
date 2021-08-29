@@ -63,8 +63,6 @@ def get_group(request, val):
             val = data_sections[key]
             test.append(val)
         context['data_sections'] = test
-        context['keys'] = list(data_sections.keys())
-        print(test)
         template = loader.get_template('chart.html')
         return HttpResponse(template.render(context, request))
     raise Http404()

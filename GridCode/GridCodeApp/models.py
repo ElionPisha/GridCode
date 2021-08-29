@@ -9,5 +9,5 @@ def file_path(instance, filename):
 class FileHandler(models.Model):
     file_upload = models.FileField(upload_to=file_path)
 
-    def __str__(self):
-        return self.file_upload
+    # def __str__(self):
+    #     return self.file_upload
