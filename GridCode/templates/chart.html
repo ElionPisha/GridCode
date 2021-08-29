@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid Code</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<div class="custom-cnt" style="width:100%;position:relative">
+    <button id="printPhotoButton" class="btn btn-primary" style="position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display:none">Download</button>
+</div>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script>
+var myChart = null;
+document.getElementById("printPhotoButton").addEventListener('click', ()=>{
+    console.log("test")
+    var a = document.createElement('a');
+    a.href = myChart.toBase64Image();
+    a.download = 'my_file_name.png';
+
+    // Trigger the download
+    a.click();
+
+})
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+setTimeout(()=> {
+var ctx = document.getElementById('myChart').getContext('2d');
+myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+        {% for i in range %}
+            {{i}},
+        {% endfor %}],
+        datasets: [
+        {% for l in data_sections %}
+            {
+            label: {{l | length}},
+            data: [
+                {% for k in l %}
+                    {{k}},
+                {% endfor %}
+            ],
+            backgroundColor: [
+            {% for k in l %}
+                    getRandomColor(),
+            {% endfor %}
+            ],
+            borderColor: [
+            {% for k in l %}
+                    getRandomColor(),
+            {% endfor %}
+            ],
+            borderWidth: 1
+        },
+        {% endfor %}
+        ]
+    },
+    options: {
+    responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+document.getElementById("printPhotoButton").style.display = "block";
+},500)
+</script>

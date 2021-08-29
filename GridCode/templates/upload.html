@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="spinner-cnt" style="display:none" id="spinner">
+    <div class="loader">Loading...</div>
+</div>
+<h1>Grid Code Procesed HDF5 File</h1>
+
+<div class="container">
+<!--    <ul>-->
+<!--      <li><a href="{{ get_files.file_upload.url }}" download>{{ get_files.file_upload }}</a></li>-->
+<!--    </ul>-->
+
+    <div class="dropdown" id="dropdown-id">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+      </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% for key in keys %}
+                <li class="list-item"><a href="{% url 'get_group' val=key %}">{{ key }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script>
+    const elems = document.getElementById("dropdown-id");
+    const ul = elems.getElementsByTagName("ul")[0];
+    for(let i = 0;i<ul.children.length;i++){
+        ul.children[i].addEventListener('click', ()=> {
+            document.getElementById("spinner").style.display="flex";
+        })
+    }
+    console.log(ul.children);
+</script>
+</html>
