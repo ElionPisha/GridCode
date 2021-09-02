@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from GridCodeApp.forms import FileHandlerForm
 from GridCodeApp.models import FileHandler
 from django.template import loader
+import requests
 import h5py
 mode = 'r'
 
@@ -15,7 +16,7 @@ def upload(request):
     context = {}
     get_files = FileHandler.objects.all().last()   #FileHandler it's the name of class which can query our database
     context = {'get_files': get_files}          # We use context to pass data to the HTML template
-    keys = []                                   # It will hold all of the keys that the HDF5 file holds, ie: 'E1p14162_DV_1p5_1em3_1'
+    keys = []
     with h5py.File(f'media/{str(get_files.file_upload)}', mode) as hdf:
         for key in hdf.keys():
             keys.append(key)
@@ -66,3 +67,15 @@ def get_group(request, val):
         template = loader.get_template('chart.html')
         return HttpResponse(template.render(context, request))
     raise Http404()
+
+
+
+#  Processing data from Website    Task 3
+
+URL = "https://standalone.kupferschluessel.de/content.php?werkstoff=01672&werkstoff2=06634&lang=german&sortgruppe=7808"
+
+def index(request):
+    r = requests.get(URL)
+    # print(r.content)
+    context = {'tem': r.content}
+    return render(request, "index2.html", context)
